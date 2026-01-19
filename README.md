@@ -177,5 +177,5 @@ Examples:
 
 👤 Author
 
-Altamish
+Altamish | Ayush Raj Arun
 Engineering Student | Data Analytics | UIDAI Hackathon Project
