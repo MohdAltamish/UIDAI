@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 # PART-1: Load & Combine Data
 # ================================
 files = [
-    "api_data_aadhar_enrolment_0_500000.csv",
-    "api_data_aadhar_enrolment_500000_1000000.csv",
-    "api_data_aadhar_enrolment_1000000_1006029.csv"
+    "Datasets/api_data_aadhar_enrolment_0_500000.csv",
+    "Datasets/api_data_aadhar_enrolment_500000_1000000.csv",
+    "Datasets/api_data_aadhar_enrolment_1000000_1006029.csv"
 ]
 
 df = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
@@ -59,7 +59,7 @@ district_student["student_ratio"] = district_student["total_students"] / distric
 
 # Top 15 by total_students
 top15_students = district_student.sort_values("total_students", ascending=False).head(15)
-top15_students.to_csv("output_student_hotspots_top15.csv", index=False)
+top15_students.to_csv("Output Datasets/output_student_hotspots_top15.csv", index=False)
 
 # ================================
 # PART-5: Plot Top 15 Student Hotspots

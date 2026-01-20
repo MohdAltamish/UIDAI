@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 # PART-1: Load & Combine Data
 # ================================
 files = [
-    "api_data_aadhar_enrolment_0_500000.csv",
-    "api_data_aadhar_enrolment_500000_1000000.csv",
-    "api_data_aadhar_enrolment_1000000_1006029.csv"
+    "Datasets/api_data_aadhar_enrolment_0_500000.csv",
+    "Datasets/api_data_aadhar_enrolment_500000_1000000.csv",
+    "Datasets/api_data_aadhar_enrolment_1000000_1006029.csv"
 ]
 
 df = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
@@ -44,7 +44,7 @@ state_age = (
       .sort_values(by="age_18_greater", ascending=False)
 )
 
-state_age.to_csv("output_state_vs_agegroup_heatmap_data.csv")
+state_age.to_csv("Output Datasets/output_state_vs_agegroup_heatmap_data.csv")
 
 # ================================
 # PART-4: Heatmap Plot (imshow)

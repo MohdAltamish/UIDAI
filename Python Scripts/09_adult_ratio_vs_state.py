@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 # LOAD + CONCAT
 # ================================
 files = [
-    "api_data_aadhar_enrolment_0_500000.csv",
-    "api_data_aadhar_enrolment_500000_1000000.csv",
-    "api_data_aadhar_enrolment_1000000_1006029.csv"
+    "Datasets/api_data_aadhar_enrolment_0_500000.csv",
+    "Datasets/api_data_aadhar_enrolment_500000_1000000.csv",
+    "Datasets/api_data_aadhar_enrolment_1000000_1006029.csv"
 ]
 
 df = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
@@ -42,45 +42,45 @@ df["total_enrolment"] = df["age_0_5"] + df["age_5_17"] + df["age_18_greater"]
 df = df[df["total_enrolment"] > 0]
 
 # ================================
-# STATE-WISE CHILD RATIO
+# STATE-WISE ADULT RATIO
 # ================================
-state_child = (
+state_adult = (
     df.groupby("state_clean")
-    .agg(total_child=("age_0_5", "sum"), total_all=("total_enrolment", "sum"))
+    .agg(total_adults=("age_18_greater", "sum"), total_all=("total_enrolment", "sum"))
     .reset_index()
 )
 
-state_child["child_ratio"] = state_child["total_child"] / state_child["total_all"]
-state_child = state_child.sort_values("child_ratio", ascending=True)
+state_adult["adult_ratio"] = state_adult["total_adults"] / state_adult["total_all"]
+state_adult = state_adult.sort_values("adult_ratio", ascending=False)
 
-state_child.to_csv("output_child_ratio_statewise.csv", index=False)
+state_adult.to_csv("Output Datasets/output_adult_ratio_statewise.csv", index=False)
 
 # ================================
-# VISUAL: Bottom 15 Child Ratio States
+# VISUAL: Top 15 Adult Ratio States (Workforce Zones)
 # ================================
-bottom15 = state_child.head(15)
+top15 = state_adult.head(15)
 
 plt.figure(figsize=(12, 6))
-plt.barh(bottom15["state_clean"], bottom15["child_ratio"])
-plt.title("Child Ratio vs State (Lowest age_0_5 / total)")
-plt.xlabel("Child Ratio")
+plt.barh(top15["state_clean"], top15["adult_ratio"])
+plt.title("Adult Ratio vs State (Highest age_18_greater / total)")
+plt.xlabel("Adult Ratio")
 plt.ylabel("State")
 plt.tight_layout()
-plt.savefig("plot_child_ratio_vs_state_bottom15.png", dpi=300)
+plt.savefig("plot_adult_ratio_vs_state_top15.png", dpi=300)
 plt.show()
 
 # ================================
-# VISUAL: Top 15 Child Ratio States
+# VISUAL: Bottom 15 Adult Ratio States
 # ================================
-top15 = state_child.tail(15)
+bottom15 = state_adult.tail(15)
 
 plt.figure(figsize=(12, 6))
-plt.barh(top15["state_clean"], top15["child_ratio"])
-plt.title("Child Ratio vs State (Highest age_0_5 / total)")
-plt.xlabel("Child Ratio")
+plt.barh(bottom15["state_clean"], bottom15["adult_ratio"])
+plt.title("Adult Ratio vs State (Lowest age_18_greater / total)")
+plt.xlabel("Adult Ratio")
 plt.ylabel("State")
 plt.tight_layout()
-plt.savefig("plot_child_ratio_vs_state_top15.png", dpi=300)
+plt.savefig("plot_adult_ratio_vs_state_bottom15.png", dpi=300)
 plt.show()
 
-print("✅ Child Ratio vs State generated successfully!")
+print("✅ Adult Ratio vs State generated successfully!")

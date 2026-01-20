@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 # PART-1: Load & Combine Data
 # ================================
 files = [
-    "api_data_aadhar_enrolment_0_500000.csv",
-    "api_data_aadhar_enrolment_500000_1000000.csv",
-    "api_data_aadhar_enrolment_1000000_1006029.csv"
+    "Datasets/api_data_aadhar_enrolment_0_500000.csv",
+    "Datasets/api_data_aadhar_enrolment_500000_1000000.csv",
+    "Datasets/api_data_aadhar_enrolment_1000000_1006029.csv"
 ]
 
 df = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
@@ -56,7 +56,7 @@ pivot = pd.pivot_table(
 )
 
 pivot = pivot.sort_index()
-pivot.to_csv("output_heatmap_state_vs_date.csv")
+pivot.to_csv("Output Datasets/output_heatmap_state_vs_date.csv")
 
 # ================================
 # PART-5: Heatmap Plot
