@@ -1,181 +1,183 @@
 # UIDAI Hackathon — Aadhaar Enrolment Trends & Societal Insights 📊🇮🇳
 
 ## 📌 Problem Statement
+
 **UIDAI Hackathon: Unlocking Societal Trends in Aadhaar Enrolment and Updates**
 
 This project analyzes Aadhaar enrolment dataset to identify:
-- meaningful patterns and trends
-- demographic (age-wise) insights
-- high-demand and low-demand zones
-- ratio-based priority zones (child/student/adult)
-- workload distribution across states/districts
+
+- Meaningful patterns and trends
+- Demographic (age-wise) insights
+- High-demand and low-demand zones
+- Ratio-based priority zones (child/student/adult)
+- Workload distribution across states/districts
 
 The goal is to convert data into **actionable insights** for better decision-making and system improvements.
 
 ---
 
-## 📂 Dataset Used
-The dataset contains Aadhaar enrolment counts across age groups:
+## 📁 Project Structure
 
-Columns used:
-- `date`
-- `state`
-- `district`
-- `pincode`
-- `age_0_5`
-- `age_5_17`
-- `age_18_greater`
+The project is organized into the following structure:
 
-Age groups represent:
-- **0–5 years** → Child enrolments  
-- **5–17 years** → Student enrolments  
-- **18+ years** → Adult/Workforce enrolments  
+```
+UIDAI Hackathon/
+│
+├── Datasets/                 # Source CSV datasets
+│
+├── Graphs/                   # Generated analytics plots (Time series, rankings, heatmaps)
+│
+├── Output Datasets/          # Processe/Cleaned data CSVs
+│
+├── Python Scripts/           # Analysis scripts
+│   ├── 01_agewise_trend_dashboard.py
+│   ├── 02_child_priority_zones.py
+│   ├── ... (and other analysis scripts)
+│   ├── analysis.py
+│   └── state_wise_piechart.py
+│
+├── State Piecharts/          # State-wise age distribution charts
+│
+├── Aadhaar-Insights-Web-App/ # React-based Dashboard Web Application
+│
+├── Images/                   # Screenshots and assets
+│
+├── run_project.py            # Main runner script for Python analysis
+└── requirements.txt          # Python dependencies
+```
 
 ---
 
-## ✅ Key Features / Analysis Done
+## 🚀 Getting Started
+
+### 🐍 Python Analytics / Data Pipeline
+
+The Python scripts process the raw data to generate insights, CSV reports, and static visualizations.
+
+1.  **Prerequisites**: Python 3.x is required.
+2.  **Installation**:
+    Install the required dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  **Running the Analysis**:
+    You can use the interactive runner to execute any of the analysis scripts easily:
+    ```bash
+    python run_project.py
+    ```
+    Simply follow the on-screen menu to select the analysis you want to run. The outputs will be generated in `Graphs/` and `Output Datasets/`.
+
+---
+
+### 🌐 Web Application (Interactive Dashboard)
+
+A modern, React-based web dashboard that provides an interactive interface to explore the Aadhaar enrolment data also powered by Gemini AI.
+
+#### Features
+
+- **Interactive Charts**: Visualize enrolment by state, growth trends, and intensity.
+- **AI Insights**: Integration with Gemini API to provide intelligent analysis of the data.
+- **Dashboard View**: specialized views for Child, Student, and Adult demographics.
+
+#### Setup Instructions
+
+1.  **Navigate to the web app directory**:
+    ```bash
+    cd Aadhaar-Insights-Web-App
+    ```
+2.  **Install Dependencies**:
+    ```bash
+    npm install
+    ```
+3.  **Configure API Key**:
+    Create a file named `.env.local` in the `Aadhaar-Insights-Web-App` directory and add your Gemini API key:
+    ```env
+    GEMINI_API_KEY=your_actual_api_key_here
+    ```
+4.  **Run the App**:
+    ```bash
+    npm run dev
+    ```
+    Open the local URL shown in the terminal (usually `http://localhost:5173`) to view the dashboard.
+
+#### 📸 Web App Screenshots
+
+|                            Dashboard Overview                            |                              Analytics View                              |
+| :----------------------------------------------------------------------: | :----------------------------------------------------------------------: |
+| <img src="Images/Screenshot 2026-01-20 at 8.44.01 PM.png" width="400" /> | <img src="Images/Screenshot 2026-01-20 at 8.44.08 PM.png" width="400" /> |
+
+|                             Ranking & Trends                             |                               AI Insights                                |
+| :----------------------------------------------------------------------: | :----------------------------------------------------------------------: |
+| <img src="Images/Screenshot 2026-01-20 at 8.44.44 PM.png" width="400" /> | <img src="Images/Screenshot 2026-01-20 at 8.44.55 PM.png" width="400" /> |
+
+---
+
+## ✅ Key Analysis & Features
+
 ### 🔹 1) State Name Cleaning & Standardization
-Fixed spelling variants like:
-- Orissa → Odisha  
-- Pondicherry → Puducherry  
-- West Bangal → West Bengal  
-- Dadra & Nagar Haveli + Daman & Diu merged correctly  
 
----
+Handling spelling variants (e.g., Orissa → Odisha, Pondicherry → Puducherry) to ensure accurate aggregation.
 
 ### 🔹 2) State-wise Total Enrolment Intelligence
-Generated:
-- Total Aadhaar enrolments per state
-- Top 10 states and Bottom 10 states ranking
 
-📌 Output:
-- ranking tables (CSV)
-- bar charts (PNG)
+- Total Aadhaar enrolments per state.
+- Ranking of Top 10 and Bottom 10 states.
 
----
+### 🔹 3) Age-wise Trends (Demographic Shifts)
 
-### 🔹 3) Age-wise Aadhaar Trend Dashboard (Over Time)
-Generated:
-- Age group trends vs date
-- Daily enrolment pulse
-- Stacked area chart showing demographic contribution over time
+- **Child (0-5)**: Identification of new birth enrolment gaps.
+- **Student (5-17)**: School-driven enrolment hotspots.
+- **Adult (18+)**: Workforce and migration-heavy regions.
 
----
+### 🔹 4) Advanced Visualizations
 
-### 🔹 4) Ratio / Priority Zone Analytics
-State-wise ratio insights:
-- **Child Ratio** = `age_0_5 / total_enrolment`
-- **Student Ratio** = `age_5_17 / total_enrolment`
-- **Adult Ratio** = `age_18_greater / total_enrolment`
-
-These help identify:
-✅ newborn enrolment gaps  
-✅ school-driven enrolment hotspots  
-✅ workforce-heavy regions  
-
----
-
-### 🔹 5) Heatmaps
-Generated heatmaps for:
-- **State vs Age Group**
-- **State vs Date (Total Enrolment intensity)**
+- **Heatmaps**: State vs Date intensity, State vs Age Group.
+- **Ratio Analytics**: Child/Student/Adult ratios per state to identify priority zones.
 
 ---
 
 ## 📊 Visualizations Generated
-This repo generates:
-- ✅ Line charts (trends over time)
-- ✅ Stacked area charts
-- ✅ Bar charts (Top/Bottom rankings)
-- ✅ Ratio-based bar charts (priority zones)
-- ✅ Heatmaps (State vs Age / Date)
 
-All plots are saved as `.png` files for easy hackathon submission.
+### 📈 Trends & Zones
 
----
+#### Age-wise Enrolment Trend
 
-## 🛠 Tech Stack
-- Python 3
-- Pandas
-- Matplotlib
+_Tracking how enrolments across different age groups have evolved over time._
 
----
+<img src="Graphs/plot_agewise_line_trend.png" width="600" />
 
-## 📁 Project Structure
+#### Heatmap: State vs Date
 
-UIDAI_Hackathon_Project/
-│
-├── api_data_aadhar_enrolment_0_500000.csv
-├── api_data_aadhar_enrolment_500000_1000000.csv
-├── api_data_aadhar_enrolment_1000000_1006029.csv
-│
-├── analysis.py
-├── 01_agewise_trend_dashboard.py
-├── 02_child_priority_zones.py
-├── 03_student_hotspots.py
-├── 04_adult_demand_zones.py
-│
-├── 05_heatmap_state_vs_agegroup.py
-├── 06_heatmap_state_vs_date_total.py
-│
-├── 07_statewise_age_piecharts.py
-│
-├── 15_child_ratio_vs_state.py
-├── 16_student_ratio_vs_state.py
-├── 17_adult_ratio_vs_state.py
-│
-├── state_pie_charts/   (auto-generated pie charts)
-├── outputs/            (generated CSV + PNG files)
-└── README.md
+_Intensity of enrolments across states over the timeline._
+
+<img src="Graphs/plot_heatmap_state_vs_date_total.png" width="600" />
+
+### 🍰 Demographic Distribution (State-wise)
+
+#### Adult Ratio Priority Zones (Top 15)
+
+_States with the highest proportion of adult enrolments._
+
+<img src="Graphs/plot_adult_ratio_vs_state_top15.png" width="600" />
+
+#### Sample State Distributions
+
+_Age group breakdown for specific regions._
+
+|                                  Delhi                                   |                                  Maharashtra                                   |
+| :----------------------------------------------------------------------: | :----------------------------------------------------------------------------: |
+| <img src="State Piecharts/delhi_age_distribution_pie.png" width="300" /> | <img src="State Piecharts/maharashtra_age_distribution_pie.png" width="300" /> |
 
 ---
 
-## ▶️ How to Run
-### ✅ Step 1: Install Dependencies
-```bash
-pip install pandas matplotlib
+## 📂 Dataset Details
 
+The dataset contains Aadhaar enrolment counts across age groups with the following columns:
 
-python3 analysis.py
-python3 01_agewise_trend_dashboard.py
-python3 05_heatmap_state_vs_agegroup.py
-python3 07_statewise_age_piecharts.py
-python3 15_child_ratio_vs_state.py
-
-
-
-📦 Output Files Generated
-
-After running scripts, you will get:
-✅ .csv files containing ranked summaries
-✅ .png plots for insights and dashboard visuals
-
-Examples:
-	•	output_child_ratio_statewise.csv
-	•	plot_child_ratio_vs_state_top15.png
-	•	plot_heatmap_state_vs_agegroup.png
-	•	state_pie_charts/delhi_age_distribution_pie.png
-
-⸻
-
-🧠 Insights & Use Cases (Examples)
-	•	States with low child ratio → need newborn enrolment awareness
-	•	High student hotspots → likely school-driven Aadhaar camps
-	•	High adult ratio zones → workforce migration & job onboarding demand
-	•	Daily trends help forecast staffing needs & resource planning
-	•	Pie charts summarize demographic focus per state clearly in one image
-
-⸻
-
-✨ Future Improvements
-	•	Add interactive dashboard using Streamlit
-	•	Add anomaly detection for spike/drop alerts
-	•	Add district-level and pincode-level heatmaps
-	•	Add forecasting models for future enrolment demand
-
-⸻
-
-👤 Author
-
-Altamish | Ayush Raj Arun
-Engineering Student | Data Analytics | UIDAI Hackathon Project
+- `date`
+- `state`
+- `district`
+- `pincode`
+- `age_0_5` (Child)
+- `age_5_17` (Student)
+- `age_18_greater` (Adult)
