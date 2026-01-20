@@ -181,3 +181,27 @@ The dataset contains Aadhaar enrolment counts across age groups with the followi
 - `age_0_5` (Child)
 - `age_5_17` (Student)
 - `age_18_greater` (Adult)
+
+⸻
+
+🧠 Insights & Use Cases (Examples)
+	•	States with low child ratio → need newborn enrolment awareness
+	•	High student hotspots → likely school-driven Aadhaar camps
+	•	High adult ratio zones → workforce migration & job onboarding demand
+	•	Daily trends help forecast staffing needs & resource planning
+	•	Pie charts summarize demographic focus per state clearly in one image
+
+⸻
+
+✨ Future Improvements
+	•	Add interactive dashboard using Streamlit
+	•	Add anomaly detection for spike/drop alerts
+	•	Add district-level and pincode-level heatmaps
+	•	Add forecasting models for future enrolment demand
+
+⸻
+
+👤 Author
+
+Altamish | Ayush Raj Arun
+Engineering Student | Data Analytics | UIDAI Hackathon Project
